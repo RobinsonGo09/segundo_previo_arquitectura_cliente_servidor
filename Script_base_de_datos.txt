@@ -3,24 +3,16 @@
   Proyecto: Mascota Feliz
 */
 
--- Paso 1: Crear la base de datos si no existe.
--- Se usa `IF NOT EXISTS` para evitar errores si el script se ejecuta más de una vez.
 CREATE DATABASE IF NOT EXISTS veterinaria;
 
--- Paso 2: Seleccionar la base de datos recién creada para trabajar sobre ella.
 USE veterinaria;
 
--- Paso 3: Crear la tabla de pacientes.
--- `id`: Un número único para cada paciente, se incrementa solo (AUTO_INCREMENT) y es la llave primaria (PRIMARY KEY).
--- `nombre`: El nombre de la mascota, puede tener hasta 100 caracteres.
--- `especie`: La especie de la mascota, puede tener hasta 50 caracteres.
 CREATE TABLE IF NOT EXISTS pacientes (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(100) NOT NULL,
   especie VARCHAR(50) NOT NULL
 );
 
--- Paso 4: Insertar datos de ejemplo para que la aplicación tenga algo que mostrar.
 INSERT INTO pacientes (nombre, especie) VALUES
 ('Firulais', 'Perro'),
 ('Mishu', 'Gato'),
