@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Clínica Mascota Feliz</title>
+</head>
+<body>
+    <h1>Pacientes de la Clínica</h1>
+    <button id="cargarPacientesBtn">Cargar Pacientes</button>
+    <ul id="listaPacientes"></ul>
+
+    <script>
+        const boton = document.getElementById('cargarPacientesBtn');
+        const lista = document.getElementById('listaPacientes');
+        
+        boton.addEventListener('click', () => {
+            // --- ¡AQUÍ ESTÁ LA URL CLAVE! ---
+            fetch('http://evaluacion.test/servidor/api.php')
+                .then(response => response.json())
+                .then(data => {
+                    lista.innerHTML = '';
+                    data.forEach(paciente => {
+                        const li = document.createElement('li');
+                        li.textContent = `${paciente.nombre} - (${paciente.especie})`;
+                        lista.appendChild(li);
+                    });
+                });
+        });
+    </script>
+</body>
+</html>
