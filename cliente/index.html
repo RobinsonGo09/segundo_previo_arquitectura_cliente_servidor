@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Clínica Mascota Feliz</title>
+    <title>Veterinaria Mascota Feliz</title>
 </head>
 <body>
-    <h1>Pacientes de la Clínica</h1>
+    <h1>Pacientes de la Veterinaria</h1>
     <button id="cargarPacientesBtn">Cargar Pacientes</button>
     <ul id="listaPacientes"></ul>
 
@@ -14,7 +14,6 @@
         const lista = document.getElementById('listaPacientes');
         
         boton.addEventListener('click', () => {
-            // --- ¡AQUÍ ESTÁ LA URL CLAVE! ---
             fetch('http://evaluacion.test/servidor/api.php')
                 .then(response => response.json())
                 .then(data => {
@@ -24,6 +23,10 @@
                         li.textContent = `${paciente.nombre} - (${paciente.especie})`;
                         lista.appendChild(li);
                     });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    lista.innerHTML = '<li>Error al cargar los datos.</li>';
                 });
         });
     </script>
